@@ -1,7 +1,7 @@
 package com.vedikabiradar.model;
-
+import com.vedikabiradar.model.Address;
+import com.vedikabiradar.model.*;
 import jakarta.persistence.*;
-import com.vedikabiradar.model.Department;
 import java.io.Serial;
 import java.io.Serializable;
 @Entity
@@ -14,7 +14,14 @@ public class Teacher implements Serializable {
     private int teacherId;
     private String salary;
     private String teacherName;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+    public Address getAddress() {
+        return address;
+    }
+    public void setAddress(Address address) {
+        this.address = address;
+    }
     public Teacher( String salary, String teacherName) {
         super();
         this.salary = salary;
@@ -42,5 +49,6 @@ public class Teacher implements Serializable {
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;    }
 }
+
 
 
