@@ -23,6 +23,7 @@
         <mapping class="com.vedikabiradar.model.Teacher"/>
         <mapping class="com.vedikabiradar.model.Department"/>
         <mapping class="com.vedikabiradar.model.Address"/>
+        <mapping class="com.vedikabiradar.model.Cohort"/>
     </session-factory>
  </hibernate-configuration>
 

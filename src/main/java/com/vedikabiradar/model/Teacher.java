@@ -1,9 +1,13 @@
 package com.vedikabiradar.model;
 import com.vedikabiradar.model.Address;
 import com.vedikabiradar.model.*;
+import com.vedikabiradar.model.Cohort;
 import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Set;
+
+
 @Entity
 @Table
 public class Teacher implements Serializable {
@@ -14,23 +18,47 @@ public class Teacher implements Serializable {
     private int teacherId;
     private String salary;
     private String teacherName;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-    public Address getAddress() {
-        return address;
+
+
+    // @OneToOne(cascade = CascadeType.ALL)
+    // private Address address;
+
+    @ManyToMany(targetEntity = Cohort.class)
+
+    private Set<Cohort> cohort;
+
+    public Set<Cohort> getCohort() {
+        return cohort;
     }
-    public void setAddress(Address address) {
-        this.address = address;
+
+    public void setCohort(Set<Cohort> cohort) {
+        this.cohort = cohort;
     }
-    public Teacher( String salary, String teacherName) {
+
+    //public Address getAddress() {
+    //     return address;
+    // }
+
+    // public void setAddress(Address address) {
+    //     this.address = address;
+    // }
+
+    public Teacher(String salary, String teacherName, Set<Cohort> cohort) {
+        this.salary = salary;
+        this.teacherName = teacherName;
+        this.cohort = cohort;
+    }
+
+    public Teacher(String salary, String teacherName) {
         super();
         this.salary = salary;
         this.teacherName = teacherName;    }
     public Teacher() {}
-    public Teacher(String salary, String teacherName, Department department) {
-        this.salary = salary;
-        this.teacherName = teacherName;
-    }
+
+
+
+
+
     public int getTeacherId() {
         return teacherId;
     }
@@ -49,6 +77,10 @@ public class Teacher implements Serializable {
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;    }
 }
+
+
+
+
 
 
 
